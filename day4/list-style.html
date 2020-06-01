@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li{
+            /* list-style用于设置列表前面的样式 ，三个参数依次是type，position，image*/
+            /*分别设置样式，相对于边框的位置，或者用图片代替样式  */
+            border: solid 2px #000000;
+            list-style-type: square;
+            list-style-position:outside;
+            list-style-image: url(test.png);
+            line-height: 5;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul >
+            <li>这是一个无序列表</li>
+            <li>这是一个无序列表</li>
+            <li>这是一个无序列表</li>
+            <li>这是一个无序列表</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100%;
+            height: 100%;
+        }
+
+        .box1 {
+            /* 这个属性设置背景图片会不会随文档滚动 */
+            background-attachment: fixed;
+            /* 背景颜色，默认透明，不可继承 ，所有html标签可以设置 */
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000fff;
+            background-color: aqua;
+            background-position: top right;
+        }
+
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background-color: cadetblue;
+            /* background-image设置背景图片，none表示没有 */
+            /* 大部分背景图片都用到body上 */
+            background-image: url(timg.jpg);
+        }
+
+        #content {
+            border: 1px solid #000fff;
+            height: 250px;
+            /* background-repeat设置平铺，参数分别是repect水平跟垂直 */
+            /* repect-x水平方向 ，repect-y垂直方向,no-repect不平铺 */
+            /* 前提，得有背景图片 */
+            background-image: url(test.png);
+            background-repeat: repeat-y;
+        }
+
+        #box3 {
+            border: 1px solid #000fff;
+            height: 250px;
+            background-image: url(test.png);
+            background-repeat: no-repeat;
+            /* 设置背景图像的定位 ,参数可以是百分比或者px，也可以混用*/
+            /* top，center,bottom-上中下；left,center,right-左中右; */
+            /* 如果只有一个参数，另一个为center，同时第一个表示水平位置 */
+            /* 前提，得有背景图片 */
+            background-position: bottom center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="box1">
+        
+    </div> -->
+    <!-- <div id="content"></div> -->
+    <div id="box3"></div>
+</body>
+
+</html>
