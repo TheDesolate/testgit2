@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 1000px;
+    height: 1000px;
+    margin: 0;
+    padding: 0;
+}
+
+#box2 h1 {
+    margin-left: 10px;
+    line-height: 3em;
+    width: 1000px;
+    height: 80px;
+}
+h2{
+    margin-top: 20px;
+    font-size: 26px;
+}
+.mar{
+    margin-top: 23px;
+}
+#box1{
+    margin-left: 5px;
+}
+p{
+    font-weight: 700;
+    font-size: 18px;
+}
+

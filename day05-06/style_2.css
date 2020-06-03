@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 1000px;
+    height: 1000px;
+}
+
+#box2 {
+    float: left;
+    background-color: rgba(64, 139, 224, 0.767);
+    width: 200px;
+    height: 1000px;
+    margin-right: 10px;
+}
+
+#box2 h1 {
+    color: white;
+    line-height: 5;
+    text-align: center;
+    font-size: 40px;
+}
+
+h2 {
+    margin: 25px;
+    font-size: 36px;
+}
+
+#bbox1 {
+    float: left;
+}
+
+p {
+    font-weight: 700;
+    font-size: 20px;
+    margin: 25px;
+}
+.mar{
+    margin-bottom: 0px;
+}
+.mar1{
+    margin-top: 0;
+}
