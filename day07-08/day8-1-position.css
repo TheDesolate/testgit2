@@ -1,0 +1,26 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.box{
+    height: 700px;
+    border: 1px solid blue;
+    position: relative;
+}
+.sectionLeft{
+    width: 20%;
+    height: 700px;
+    background-color: violet;
+    position: absolute;
+}
+.sectionRight{
+    width: 20%;
+    height: 700px;
+    background-color: chartreuse;
+    position: absolute;
+    margin-left: 80%;
+}
+.sectionMid{
+    height: 700px;
+    background-color: coral;
+}

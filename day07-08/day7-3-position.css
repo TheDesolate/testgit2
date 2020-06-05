@@ -1,0 +1,25 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.box1{
+    height: 800px;
+    width: auto;
+    border: red solid 1px;
+    position: relative;
+}
+.cbox1{
+    height: 100px;
+    background-color: saddlebrown;
+}
+.cbox2{
+    width: 20%;
+    height: 700px;
+    background-color: slateblue;
+    position: absolute;
+    margin-left: 80%;
+}
+.cbox3{
+    height: 700px;
+    background-color: springgreen;
+}

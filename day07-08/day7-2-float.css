@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.box1{
+    width: 100%;
+    height: 800px;
+    border: greenyellow solid 1px;
+}
+.cbox1{
+    width: 100%;
+    height: 100px;
+    background-color: indigo;
+}
+.cbox2{
+    width: 30%;
+    height: 700px;
+    background-color: lightpink;
+    float: left;
+}
+/* 自适应的方法，不设置右边盒子的宽度，只需要设置距离左边盒子的距离就可 */
+.cbox3{
+    margin-left: 30%;
+    height: 700px;
+    background-color: lightsalmon;
+}

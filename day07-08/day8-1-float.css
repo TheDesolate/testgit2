@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.cbox1 {
+    height: 100px;
+    background-color: wheat;
+}
+
+.sectionLeft {
+    float: left;
+    width: 20%;
+    height: 700px;
+    border: yellow solid 1px;
+
+}
+
+.sectionRight {
+    float: right;
+    width: 20%;
+    height: 700px;
+    border: #555555 solid 1px;
+}
+.sectionMid{
+    height: 700px;
+    border: tomato solid 1px;
+    margin: 0 20%;
+}
