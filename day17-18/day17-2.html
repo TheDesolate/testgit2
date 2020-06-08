@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+    <button id="trans-btn">转化为二进制</button>
+    <p id="result">运算结果</p>
+    <script>
+        document.getElementById("trans-btn").onclick = function () {
+            document.getElementById("result").innerHTML = dec2bin(document.getElementById("dec-number").value)
+        }
+
+
+        function dec2bin(decNumber) {
+            if (decNumber < 0) {
+                return false;
+            }
+            var stack1 = [];
+            var result;
+            var binaryString = '';
+            while (decNumber > 0) {
+                result = Math.floor(decNumber % 2);
+                stack1.push(result);
+                decNumber = Math.floor(decNumber / 2)
+            }
+            while (stack1.length > 0) {
+                binaryString += stack1.pop().toString()
+            }
+            return binaryString
+        }
+    </script>
+</body>
+
+</html>
