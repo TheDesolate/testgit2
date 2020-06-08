@@ -1,0 +1,69 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 1000px;
+    height: 1000px;
+}
+
+#box2 {
+    width: 1000px;
+    height: 80px;
+    background-color: rgba(82, 81, 82, 0.781);
+    float: left;
+}
+
+#box2 h1 {
+    color: white;
+    line-height: 80px;
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+#box3,
+#box4,
+#box5,
+#box6,
+#box7 {
+    border: rgba(204, 204, 204, 0.877) 1px solid;
+    float: left;
+    width: 1000px;
+
+}
+
+#box3 h2,
+#box4 h2,
+#box5 h2,
+#box6 h2,
+#box7 h2 {
+    float: left;
+    height: 100px;
+    width: 100px;
+    background-color: rgba(160, 160, 160, 0.411);
+    margin-right: 10px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 6;
+}
+
+.font1 {
+    font-weight: 700;
+}
+
+.mar {
+    font-weight: 700;
+    float: left;
+}
+
+.app {
+    margin-top: 5px;
+}
+
+#box3 p,
+#box4 p {
+    margin-top: 5px;
+}
