@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+        select {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <label>
+        <input id="school" name="status" type="radio" onclick="choseSch()">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio" onclick="choseCom()">
+        Company
+    </label>
+
+    <select id="school-select">
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">
+        <option>百度</option>
+        <option>爱奇艺</option>
+    </select>
+    <script>
+        // 给鼠标一个点击事件，当点击不同的按钮时，做出不同响应
+        function choseSch() {
+            let x = document.getElementById("school-select");
+            x.style.cssText = "display:block";
+            // 当一个被选择的显示时，没被显示的需要隐藏
+            let y = document.getElementById("company-select");
+            // y.style.display = "none"
+            //  y.style= "select"
+            y.style.cssText = "display:none"
+        }
+
+        function choseCom() {
+            let x = document.getElementById("company-select");
+            x.style.cssText = "display:block";
+            let y = document.getElementById("school-select");
+            // y.style.display = "none"
+            //  y.style= "select"
+            y.style.cssText = "display:none"
+        }
+    </script>
+</body>
+
+</html>

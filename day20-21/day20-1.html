@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="name" type="text">
+    <button id="submit-btn">Submit</button>
+    <script>
+        var btn = document.getElementById("submit-btn");
+        btn.onclick = function () {
+            console.log(document.getElementById("name").value)
+        }
+        // onkeyup跟onleydown使用键盘对应的Unicode码
+        // onkeypress使用的是虚拟的，所以用onkeypress不能生效
+        document.onkeydown = function getKey() {
+            if (event.keyCode == 13) {
+                var inputText = document.getElementById('name').value;
+                console.log(inputText);
+            }
+            if (event.keyCode == 27) {
+                var inputText = document.getElementById('name');
+                inputText.value = "";
+                inputText.focus();
+            }
+
+        }
+    </script>
+</body>
+
+</html>
