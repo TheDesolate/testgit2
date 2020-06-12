@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <label>String A:
+            <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+        </label>
+        <textarea id="str-a"></textarea>
+        <label>String B:
+            <input id="radio-b" type="radio" name="str-obj" value="b">
+        </label>
+        <textarea id="str-b"></textarea>
+        <label>Num A：<input id="num-a" type="number" value="0"></label>
+        <label>Num B：<input id="num-b" type="number" value="1"></label>
+    </div>
+    <div>
+        <button onclick="mylength()">获取当前选中输入的内容长度</button>
+        <button onclick="third()">当前选中输入中的第3个字符</button>
+        <button onclick="myconcat()">把两个输入框的文字连接在一起输出（concat）</button>
+        <button onclick="myIndexof()">输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+        <button onclick="myLastIndexof()">输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+        <button onclick="mySlice()">使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+        <button onclick="getRows()">当前选中输入框的行数</button>
+        <button onclick=" mySubString()">使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+        <button onclick="myUpperCase()">把所选输入框中的内容全部转为大写</button>
+        <button onclick="myLowerCase()">把所选输入框中的内容全部转为小写</button>
+        <button onclick="clearnull()">把所选输入框中内容的半角空格全部去除</button>
+        <button onclick="myreplace()">把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+    </div>
+    <p id="result"></p>
+    <script>
+        var result = document.getElementById("result");
+        var rb = document.getElementById("radio-b");
+        var ra = document.getElementById("radio-a");
+
+
+        function mylength() {
+
+            var stra = document.getElementById("str-a").value;
+            if (ra.checked == true) {
+                result.innerHTML = "当前选中的内容长度为：" + stra.length;
+            }
+
+            var strb = document.getElementById("str-b").value;
+            if (rb.checked == true) {
+                result.innerHTML = "当前选中的内容长度为：" + strb.length;
+            }
+        }
+
+        function third() {
+            var stra = document.getElementById("str-a").value;
+            if (ra.checked == true) {
+                console.log(stra)
+                result.innerHTML = "当前选中输入中的第3个字符：" + stra[2];
+            }
+
+            var strb = document.getElementById("str-b").value;
+            if (rb.checked == true) {
+                result.innerHTML = "当前选中输入中的第3个字符：" + strb[2];
+            }
+        }
+
+        function myconcat() {
+            var stra = document.getElementById("str-a").value;
+            var strb = document.getElementById("str-b").value;
+            result.innerHTML = stra.concat(strb)
+        }
+
+        function myIndexof() {
+            var stra = document.getElementById("str-a").value;
+            var strb = document.getElementById("str-b").value;
+            result.innerHTML = stra.indexOf(strb)
+        }
+
+        function myLastIndexof() {
+            var stra = document.getElementById("str-a").value;
+            var strb = document.getElementById("str-b").value;
+            result.innerHTML = strb.lastIndexOf(stra)
+        }
+
+        function mySlice(numa, numb) {
+            var numa = document.getElementById("num-a").value;
+            var numb = document.getElementById("num-b").value;
+
+            var stra = document.getElementById("str-a").value;
+            if (ra.checked == true) {
+                result.innerHTML = "获取选中输入框内容的部分内容为：" + stra.slice(numa);
+            }
+
+            var strb = document.getElementById("str-b").value;
+            if (rb.checked == true) {
+                result.innerHTML = "获取选中输入框内容的部分内容为：" + strb.slice(numb);
+            }
+        }
+
+        function getRows() {
+
+            var stra = document.getElementById("str-a").value;
+            if (ra.checked == true) {
+                result.innerHTML = "当前选中输入框的行数为：" + Math.ceil((stra.length) / 17);
+            }
+
+            var strb = document.getElementById("str-b").value;
+            if (rb.checked == true) {
+                result.innerHTML = "当前选中输入框的行数为：" + Math.ceil((strb.length) / 17);
+            }
+        }
+
+        function mySubString(numa, numb) {
+            var numa = document.getElementById("num-a").value;
+            var numb = document.getElementById("num-b").value;
+
+            var stra = document.getElementById("str-a").value;
+            if (ra.checked == true) {
+                result.innerHTML = "获取选中输入框内容的子字符串为：" + stra.substring(numa, numb);
+            }
+
+            var strb = document.getElementById("str-b").value;
+            if (rb.checked == true) {
+                result.innerHTML = "获取选中输入框内容的子字符串为：" + strb.substring(numa, numb);
+            }
+        }
+
+        function myUpperCase() {
+            var stra = document.getElementById("str-a").value;
+            if (ra.checked == true) {
+                result.innerHTML = "获取选中输入框内容的子字符串为：" + stra.toUpperCase();
+            }
+
+            var strb = document.getElementById("str-b").value;
+            if (rb.checked == true) {
+                result.innerHTML = "获取选中输入框内容的子字符串为：" + strb.toUpperCase();
+            }
+        }
+
+        function myLowerCase() {
+            var stra = document.getElementById("str-a").value;
+            if (ra.checked == true) {
+                result.innerHTML = "获取选中输入框内容的子字符串为：" + stra.toLowerCase();
+            }
+
+            var strb = document.getElementById("str-b").value;
+            if (rb.checked == true) {
+                result.innerHTML = "获取选中输入框内容的子字符串为：" + strb.toLowerCase();
+            }
+        }
+
+        function clearnull() {
+            var stra = document.getElementById("str-a").value;
+            if (ra.checked == true) {
+                result.innerHTML = "所选输入框中内容的半角空格全部去除为：" + stra.replace(/\s+/g, "");
+            }
+
+            var strb = document.getElementById("str-b").value;
+            if (rb.checked == true) {
+                result.innerHTML = "所选输入框中内容的半角空格全部去除为：" + strb.replace(/\s+/g, "");
+            }
+        }
+
+        function myreplace() {
+            var stra = document.getElementById("str-a").value;
+            var strb = document.getElementById("str-b").value;
+            if (ra.checked == true) {
+                var regex = /a/gi;
+                result.innerHTML = "获取选中输入框内容的子字符串为：" + stra.replace(regex, strb);
+            }
+
+            if (rb.checked == true) {
+                result.innerHTML = "获取选中输入框内容的子字符串为：" + strb.replace(/a/gi, stra);
+            }
+        }
+    </script>
+</body>
+
+</html>

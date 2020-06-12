@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="queue-input" type="text">
+    <p id="queue-cont">队列内容：apple&lt;-pear</p>
+    <button id="in-btn">入队</button>
+    <button id="out-btn">出队</button>
+    <button id="font-btn">打印队头元素内容</button>
+    <button id="empty-btn">判断队列是否为空</button>
+
+    <script>
+        var queue = ["apple", "pear"];
+        var con = document.getElementById("queue-cont");
+        document.getElementById("in-btn").addEventListener("click", function () {
+            var str = document.getElementById("queue-input").value;
+            queue.push(str);
+            con.innerHTML = queue.join(" <- ");
+        })
+
+        document.getElementById("out-btn").addEventListener("click", function () {
+            var str = document.getElementById("queue-input").value;
+            queue.shift();
+            con.innerHTML = queue.join(" <- ");
+        })
+
+        document.getElementById("font-btn").addEventListener("click", function () {
+            con.innerHTML = "当前队头元素是" + queue[0]
+        })
+
+        document.getElementById("empty-btn").addEventListener("click", function () {
+            con.innerHTML = (queue.length > 0) ? '当前队列不为空' : '当前队列空'
+        })
+    </script>
+</body>
+
+</html>
