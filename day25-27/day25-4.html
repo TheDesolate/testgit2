@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <select id="year-select">
+
+    </select>
+
+    <select id="month-select">
+
+    </select>
+
+    <select id="day-select">
+
+    </select>
+
+    <select id="hour-select">
+
+    </select>
+
+    <select id="minute-select">
+
+    </select>
+
+    <select id="second-select">
+
+    </select>
+
+    <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+    <script>
+        var year = document.getElementById("year-select");
+        var month = document.getElementById("month-select");
+        var day = document.getElementById("day-select");
+        var hour = document.getElementById("hour-select");
+        var minute = document.getElementById("minute-select");
+        var second = document.getElementById("second-select");
+        var result = document.getElementById("result-wrapper");
+        // 每个月的天数，准备成一个数组，把月份的值传进函数就可以得到天数
+        Days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+        function startTime() {
+            // 通过现在的时间，做出一个可选择的时间范围
+            var now = new Date();
+            var y = now.getFullYear();
+            for (var i = (y - 30); i < (y + 30); i++) {
+                year.options.add(new Option(`${i}年`, i))
+            }
+
+            for (var i = 1; i < 13; i++) {
+                month.options.add(new Option(`${i}月`, i))
+            }
+            for (var i = 0; i < 24; i++) {
+                hour.options.add(new Option(i + "时", i));
+            }
+
+            for (var i = 0; i < 60; i++) {
+                minute.options.add(new Option(i + "分", i));
+            }
+
+            for (var i = 0; i < 60; i++) {
+                second.options.add(new Option(i + "秒", i));
+            }
+        }
+
+        function getWeekday(weekday) {
+            var arr = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+            return arr[weekday];
+        }
+        // options选项清零
+        function optionsClear(e) {
+            e.options.length = 0
+        }
+        // 设置天数
+        function writeDay(n) {
+            optionsClear(day);
+            for (var i = 1; i <= n; i++) {
+                day.options.add(new Option(`${i}日`, i))
+            }
+        }
+
+        function isLeapYear(year) {
+            return (year % 4 == 0 && year % 100 !== 0 || year % 400 == 0)
+        }
+        // 监听，当年份有变化的时候判断并把天数选项做出对应的变化
+        year.onchange = function () {
+            var mouthValue = month.options[month.selectedIndex].value;
+            var n = Days[mouthValue - 1]
+            if (mouthValue == 2 && isLeapYear(year.value)) {
+                n++;
+                writeDay(n);
+            }
+        }
+        // 监听，当月份有变化的时候判断并把天数选项做出对应的变化
+        month.onchange = function () {
+            var yearValue = year.options[year.selectedIndex].value;
+            var n = Days[month.value - 1];
+            if (month.value == 2 && isLeapYear(yearValue))
+                n++;
+            writeDay(n);
+        }
+        // 潜艇浏览器加载，同时设置浏览器兼容
+        if (document.attachEvent) {
+            window.attachEvent("onload", startTime)
+        } else {
+            window.addEventListener('load', startTime)
+        }
+        // 获取选择的时间，并转换成对应的格式
+        function getTimeselect() {
+            var str = `${year.value}/${month.value}/${day.value}`
+            var timeselect = new Date(str)
+            return `${year.value} 年${month.value} 月${day.value} 日  ${getWeekday(timeselect.getDay())} ${hour.value}:${minute.value}:${second.value}   `
+        }
+
+        function getTimeDistance() {
+            // 获取现在的时间
+            var date = new Date();
+
+            // 获取选择的时间
+            var timeSelectStr =
+                `${year.value}/${month.value}/${day.value}  /${hour.value}:${minute.value}:${second.value}`
+            var selectTime = new Date(timeSelectStr)
+
+            // 计算相差的时间，单位时毫秒
+            var secondDistance = date.getTime() - selectTime.getTime()
+
+            // 转成整数方便处理
+            if (secondDistance < 0) {
+                secondDistance = -secondDistance
+                var str = '还有'
+            } else {
+                var str = '已经过去'
+            }
+            // 将上面的毫秒转换成对应的时间
+            var daym = parseInt(secondDistance / 86400000);
+            var hourm = parseInt((secondDistance % 86400000) / 3600000);
+            var minutem = parseInt(((secondDistance % 86400000) % 3600000) / 60000);
+            var secondm = parseInt((((secondDistance % 86400000) % 3600000) % 60000) / 1000);
+            return str + `   ${daym}天${hourm}时${minutem}分${secondm}秒`
+        }
+
+        function showDate() {
+            result.innerHTML = "现在距离:" + getTimeselect() + getTimeDistance()
+        }
+        setInterval(showDate, 1000)
+    </script>
+</body>
+
+</html>
