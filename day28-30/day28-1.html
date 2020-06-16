@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        #email-input {
+            font-size: 24px;
+            width: 200px;
+            height: 30px;
+
+        }
+
+        .box1 {
+            height: auto;
+            width: 200px;
+            border: 1px solid #cccccc;
+        }
+
+        li {
+            background-color: rgb(255, 255, 255);
+            margin-top: 0;
+            list-style: none;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        li:hover {
+            background-color: aquamarine;
+        }
+
+        .selectedLi {
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <input id="email-input" type="text">
+        <div class="box1">
+            <ul id="email-sug-wrapper" class="email-sug"></ul>
+        </div>
+    </div>
+    <script>
+        var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+        var email = document.getElementById("email-sug-wrapper")
+        var inputDom = document.getElementById("email-input")
+        inputDom.focus();
+        var nowSelectTipIndex = 0;
+
+        inputDom.addEventListener("keyup", function (event) {
+            var event = event || window.event;
+            if (event.keyCode != 13 && event.keyCode != 108 && event.keyCode != 38 && event.keyCode != 40) {
+                resetSelected();
+            }
+            if (event.keyCode == 38) {
+                if (nowSelectTipIndex == 0) {
+                    nowSelectTipIndex = email.childNodes.length - 1;
+                } else {
+                    nowSelectTipIndex--;
+                }
+            }
+            if (event.keyCode == 40) {
+                if (nowSelectTipIndex >= email.childNodes.length - 1) {
+                    nowSelectTipIndex = 0;
+                } else {
+                    nowSelectTipIndex++;
+                }
+            }
+            if (event.keyCode == 27) {
+                inputDom.select();
+            }
+            addTipcontent();
+            displayControl();
+            if (event.keyCode == 13 || event.keyCode == 108) {
+                // 从当前提示框中选第 nowSelectTipIndex 个Li，将其HTML内容解码后填到input中
+                inputDom.value = email.childNodes[nowSelectTipIndex].innerText;
+                hidden();
+            }
+        })
+
+
+        function resetSelected() {
+            nowSelectTipIndex = 0;
+        }
+
+        // 监听当点击事件发生时，文本框做出的变化
+        var lilist = document.getElementsByClassName("email-sug")[0];
+        lilist.onclick = function (event) {
+            var event = event || window.event;
+            var target = event.target || event.scrElement;
+            if (target.nodeName.toLowerCase() == 'li') {
+                hidden();
+                inputDom.value = htmlDecode(target.innerHTML);
+            }
+            inputDom.focus();
+        }
+
+        // 转码
+        function htmlEncodde(html) {
+            var temp = document.createElement("div");
+            (temp.textContent !== undefined) ? (temp.innerHTML = html) : (temp.innerText = html)
+            var output = temp.innerHTML;
+            temp = null;
+            return output
+        }
+
+        // 解码
+        function htmlDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent
+            temp = null;
+            return output;
+        }
+
+
+
+        // 获取文本框的内容
+        function getInputValue() {
+            var str = inputDom.value.trim();
+            str = htmlDecode(str);
+            return str;
+        }
+        // 创建输入时要显示的内容
+        function createTip() {
+            var str = getInputValue();
+            var str1, str2;
+            var newList = [];
+            var flag = 0;
+            if (str.indexOf("@") == -1) {
+                str1 = str;
+            } else {
+                str1 = str.substring(0, str.indexOf('@'))
+                str2 = str.substring(str.indexOf('@') + 1)
+            }
+            for (var i = 0; i < postfixList.length; i++) {
+                if (postfixList[i].indexOf(str2) == 0) {
+                    newList.push(str1 + "@" + postfixList[i])
+                    flag = 1;
+                }
+            }
+
+            if (flag == 0) {
+                for (var i = 0; i < postfixList.length; i++) {
+                    newList.push(str1 + "@" + postfixList[i])
+                }
+            }
+            // arr[nowSelectTipIndex].className ='selectedLi';
+            // console.log(newList);
+            // console.log(nowSelectTipIndex);
+            // console.log(list[nowSelectTipIndex].className);
+            return newList
+        }
+
+        // 将要显示的内容加到ul中
+        function addTipcontent() {
+            var len = email.childNodes.length;
+            //removechild()正常的删除全部节点，应该从后面往前删除。
+            //原因是当你把索引为0的子节点删除后，那么原来索引为1节点此时它的索引变成0了，而这时变量i已经变成1了，程序继续走时就会删除原先索引为２的现在为1的节点，这样程序运行的结果就是只删除了一半的子节点。
+            for (var i = len - 1; i >= 0; i--) {
+                email.removeChild(email.childNodes[i]);
+            }
+            var list = createTip();
+            for (var i = 0; i < list.length; i++) {
+                var li = document.createElement('li')
+                li.innerHTML = list[i];
+                email.appendChild(li)
+            }
+            document.getElementsByTagName("li")[nowSelectTipIndex].className = 'selectedLi';
+            
+
+
+        }
+
+        // addTipcontent();
+        // 控制输入框的显示和隐藏
+        function displayControl() {
+            var str = getInputValue();
+            if (str == " ") {
+                hidden();
+            } else {
+                display();
+            }
+        }
+
+        function hidden() {
+            email.style.visibility = "hidden"
+        }
+
+        function display() {
+            email.style.visibility = "visible"
+        }
+    </script>
+</body>
+
+</html>
